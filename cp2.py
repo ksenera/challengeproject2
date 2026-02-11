@@ -5,12 +5,15 @@ COURSE    : SFWRTECH 4MA3 - Numerical Linear Algebra and Numerical Optimization
 INSTRUCTOR: Gagan Sidhu
 """
 
+import numpy as np
+
 # algorithm 3.1: householder qr factorization
-def householder(A_matrix):
+def householder(A_matrix, b_vector):
     n = len(A_matrix[0])
     m = len(A_matrix)
     A = [row[:] for row in A_matrix]
     A = np.array(A, dtype=float)
+    b = np.array(b_vector, dtype=FloatingPointError)
     
     print("Matrix A:")
     for row in A:
