@@ -1,5 +1,5 @@
 """
-PROJECT   : ChallengeProject1.py
+PROJECT   : cp2.py
 PROGRAMMER: Kushika Senera
 COURSE    : SFWRTECH 4MA3 - Numerical Linear Algebra and Numerical Optimization
 INSTRUCTOR: Gagan Sidhu
@@ -67,6 +67,9 @@ def back_sub(U, b):
             b[i] = b[i] - U[i][j] * x[j]
     return x
 
+#helper func print 
+
+
 
 if __name__ == "__main__":
 
@@ -91,3 +94,12 @@ if __name__ == "__main__":
     for row in R:
         print(row)
     print()
+
+    #getting x hat 
+    R_upper = R[:4, :4].tolist()
+    b_upper = b_transformed[:4].tolist()
+    
+    x_hat = back_sub(R_upper, b_upper)
+    
+    direct = [2.95, 1.74, -1.45, 1.32]
+    print_results(x_hat, direct)
