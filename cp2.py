@@ -68,7 +68,15 @@ def back_sub(U, b):
     return x
 
 #helper func print 
-
+def print_results(x_hat, direct):
+    print("Altitudes x̂:")
+    for i in range(len(x_hat)):
+        print(f"x{i+1} = {x_hat[i]:.2f}")
+    print()
+    delta_x = [x_hat[i] - direct[i] for i in range(len(x_hat))]
+    print("Δx:")
+    for i in range(len(delta_x)):
+        print(f"Δx{i+1} = {delta_x[i]:.2f}")
 
 
 if __name__ == "__main__":
