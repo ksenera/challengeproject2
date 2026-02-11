@@ -15,11 +15,6 @@ def householder(A_matrix, b_vector):
     A = np.array(A, dtype=float)
     b = np.array(b_vector, dtype=FloatingPointError)
     
-    print("Matrix A:")
-    for row in A:
-        print(row)
-    print()
-    
     # for k = 1 to n
     for k in range(n):  
         
@@ -47,14 +42,6 @@ def householder(A_matrix, b_vector):
             # aj = aj - (2γj/βk)vk
             A[k:m, j] = a_j - (2 * gamma_j / beta_k) * v_k
         
-        print("Matrix A after transformation:")
-        for row in A:
-            print(row)
-        print()
-    
-    print("Final R (upper triangular):")
-    for row in A:
-        print(row)
     
     return A
 
