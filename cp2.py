@@ -42,8 +42,12 @@ def householder(A_matrix, b_vector):
             # aj = aj - (2γj/βk)vk
             A[k:m, j] = a_j - (2 * gamma_j / beta_k) * v_k
         
-    
-    return A
+        # do gamma b transformation like A above
+        b_sub = b[k:m]
+        gamma_b = np.sum(v_k * b_sub)
+        b[k:m] = b_sub - (2 * gamma_b / beta_k)
+        
+    return A, b
 
 
 # lower triangle system Lx = b
