@@ -69,7 +69,7 @@ def back_sub(U, b):
 
 
 if __name__ == "__main__":
-    
+
     A_matrix = [
         [1, 0, 0, 0],
         [0, 1, 0, 0],
@@ -82,3 +82,12 @@ if __name__ == "__main__":
         [0, 1, 0, -1],
         [0, 0, 1, -1]
     ]
+
+    b_vector = [2.95, 1.74, -1.45, 1.32, 1.23, 4.45, 1.61, 3.21, 0.45, -2.75]
+
+    R, b_transformed = householder(A_matrix, b_vector)
+    
+    print("Matrix A after all Householder transformations:")
+    for row in R:
+        print(row)
+    print()
