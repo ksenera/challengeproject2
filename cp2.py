@@ -50,25 +50,6 @@ def householder(A_matrix, b_vector):
     return A, b
 
 
-# lower triangle system Lx = b
-def forward_sub(L, b):
-    # declare and initialize output vector x
-    n = len(b)
-    x = [0.0] * n
-    # for j = 1 to n {loop over cols.} 
-    # got length of b vector and put it in n to start loop
-    for j in range(n):
-        # xj = bj/Ljj {compute soln. component}
-        x[j] = b[j] / L[j][j]
-
-        # for i = j + 1 to n 
-        # j starts at index 0 so j + 1 = 1 & n = 4 so from index 1 up to index 3 
-        # range start to stop index n-1 => 4-1 = 3 
-        for i in range(j+1,n):
-            # bi = bi - Lijxj {update RHS}
-            b[i] = b[i] - L[i][j] * x[j]
-    return x
-
 # upper triangle system Ux = b 
 def back_sub(U, b):
     # declare and initialize output vector x
