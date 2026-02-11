@@ -5,36 +5,55 @@ COURSE    : SFWRTECH 4MA3 - Numerical Linear Algebra and Numerical Optimization
 INSTRUCTOR: Gagan Sidhu
 """
 
-# A 𝑛 × 𝑛 Hilbert matrix has entries 𝐻ij = 1/ i + j -1, so form 
-"""
-|1   1/2 1/3 ...|
-|1/2 1/3 1/4 ...|
-|1/3 1/4 1/5 ...|
-| :   :   :   ⋱|
-"""
-def generatorHb(n):
-    # empty n x n matrix
-    H = []
-    for i in range(n):
-        row = []
-        for j in range(n):
-            row.append(1.0/(i+j+1))
-        H.append(row)
-
-# using x, a n-vector with all entries equal to 1
-    x = []
-    for i in range(n):
-        x.append(1.0)
-
-# n-vector b=Hx 
-    b = [] 
-    for i in range(n):
-        b_i = 0.0
-        for j in range(n):
-            b_i = b_i + H[i][j] * x[j]
-        b.append(b_i)
-
-    return H, b
+# algorithm 3.1: householder qr factorization
+def householder(A_matrix):
+    n = len(A_matrix[0])
+    m = len(A_matrix)
+    A = [row[:] for row in A_matrix]
+    A = np.array(A, dtype=float)
+    
+    print("Matrix A:")
+    for row in A:
+        print(row)
+    print()
+    
+    # for k = 1 to n
+    for k in range(n):  
+        
+        # αk = -sign(akk)√(a²kk + ... + a²mk) 
+        a_k = A[k:m, k].copy()
+        alpha_k = -np.sign(a_k[0]) * np.sqrt(np.sum(a_k**2))
+        
+        # vk = [0 ... 0 akk ... amk]^T - αk*ek
+        v_k = a_k.copy()
+        v_k[0] = v_k[0] - alpha_k
+        
+        # βk = v_k^T * v_k
+        beta_k = np.sum(v_k * v_k)
+        
+        # if βk = 0 then continue with next k 
+        if beta_k == 0:
+            continue
+        
+        # for j = k to n 
+        for j in range(k, n):
+            # γj = v_k^T * aj
+            a_j = A[k:m, j]
+            gamma_j = np.sum(v_k * a_j)
+            
+            # aj = aj - (2γj/βk)vk
+            A[k:m, j] = a_j - (2 * gamma_j / beta_k) * v_k
+        
+        print("Matrix A after transformation:")
+        for row in A:
+            print(row)
+        print()
+    
+    print("Final R (upper triangular):")
+    for row in A:
+        print(row)
+    
+    return A
 
 
 # lower triangle system Lx = b
