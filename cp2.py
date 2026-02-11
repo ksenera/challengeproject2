@@ -69,41 +69,16 @@ def back_sub(U, b):
 
 
 if __name__ == "__main__":
-    n = 2
-    while n <= 10:
-        # generate the Hilbert matrix and vector b
-        H, b = generatorHb(n)
-
-        # add x = 1.0 again 
-        x = []
-        for i in range(n):
-            x.append(1.0)
-
-        # solve for approximate x Hx̂ = b
-        x_hat = gauss_elim(H, b)
     
-        # Find the ∞ −norm of the residual 𝒓 = 𝒃 − 𝑯x̂
-        r = [] 
-        for i in range(n):
-            r_i = b[i]
-            for j in range(n):
-                r_i = r_i - H[i][j] * x_hat[j]
-                
-        # Find the error 𝚫𝒙 = 𝒙2 − 𝒙, where x is the true solution, 
-        # i.e., the n-vector with all entries equal to 1 
-        delta_x = []
-        for i in range(n):
-            delta_x.append(x_hat[i] - x[i])
-
-
-        print(f"\nx̂ = {x_hat}")
-        print(f"r = {r}")
-        print(f"Δx = {delta_x}")
-
-        error = max(abs(val) for val in delta_x)
-
-        #  error reaching 100% end while loop 
-        if error >= 1.0:
-            break 
-
-        n += 1
+    A_matrix = [
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1],
+        [1, -1, 0, 0],
+        [1, 0, -1, 0],
+        [1, 0, 0, -1],
+        [0, 1, -1, 0],
+        [0, 1, 0, -1],
+        [0, 0, 1, -1]
+    ]
