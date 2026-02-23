@@ -3,7 +3,7 @@ PROJECT   : cp2.py
 PROGRAMMER: Kushika Senera
 COURSE    : SFWRTECH 4MA3 - Numerical Linear Algebra and Numerical Optimization
 INSTRUCTOR: Gagan Sidhu
-DATE: yesterday 
+DATE: Mon Feb 23rd - fixed 
 """
 
 import numpy as np
@@ -77,7 +77,7 @@ def print_results(x_hat, direct):
     delta_x = [x_hat[i] - direct[i] for i in range(len(x_hat))]
     print("Δx:")
     for i in range(len(delta_x)):
-        print(f"Δx{i+1} = {delta_x[i]:.2f}")
+        print(f"Δx{i+1} = {delta_x[i]:.4f}")
 
 
 if __name__ == "__main__":
