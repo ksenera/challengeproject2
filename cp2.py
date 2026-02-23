@@ -14,7 +14,7 @@ def householder(A_matrix, b_vector):
     m = len(A_matrix)
     A = [row[:] for row in A_matrix]
     A = np.array(A, dtype=float)
-    b = np.array(b_vector, dtype=FloatingPointError)
+    b = np.array(b_vector, dtype=float)
     
     # for k = 1 to n
     for k in range(n):  
@@ -46,7 +46,7 @@ def householder(A_matrix, b_vector):
         # do gamma b transformation like A above
         b_sub = b[k:m]
         gamma_b = np.sum(v_k * b_sub)
-        b[k:m] = b_sub - (2 * gamma_b / beta_k)
+        b[k:m] = b_sub - (2 * gamma_b / beta_k) * v_k
         
     return A, b
 
@@ -77,8 +77,7 @@ def print_results(x_hat, direct):
     delta_x = [x_hat[i] - direct[i] for i in range(len(x_hat))]
     print("Δx:")
     for i in range(len(delta_x)):
-        print(f"Δx{i+1} = {delta_x[i]:.2
-                           f}")
+        print(f"Δx{i+1} = {delta_x[i]:.2f}")
 
 
 if __name__ == "__main__":
