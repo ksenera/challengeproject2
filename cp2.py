@@ -114,3 +114,4 @@ if __name__ == "__main__":
     print_results(x_hat, direct)
 
     # need to add some more code for another matrix trans
+    # try cholesky here maybe 
